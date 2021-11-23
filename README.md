@@ -25,8 +25,8 @@ Referer til repo [navikt/tms-ktor-token-support](https://github.com/navikt/tms-k
 Templaten kommer konfigurert med to sett med ingresser. Det ene er ment for apper som skal nåes fra frontend, og
 det andre for apper som kun skal nåes fra andre tjenester eller naisdevice:
 
-Skal nåes fra frontend: `https://person.(dev.)nav.no/<appnavn>`
-Skal kun nåes fra andre tjenester: `https://<appnavn>.(dev.)intern.nav.no/<appnavn>` 
+- Skal nåes fra frontend: `https://person.(dev.)nav.no/<appnavn>`
+- Skal kun nåes fra andre tjenester: `https://<appnavn>.(dev.)intern.nav.no/<appnavn>` 
 
 
 ## Workflows
