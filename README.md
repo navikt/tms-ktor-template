@@ -2,15 +2,15 @@
 
 Kan brukes som utgangspunkt for å opprette nye Ktor-apper for Team Min Side.
 
-# Tilpasse repo-et
+# Tilpass repo-et
 
-## Tilpasse navn
+## Tilpass navn
 
 1. Søk etter og erstatt `tms-ktor-template` med det som skal være navnet på den nye appen.
 2. Endre navnet på mappen `src/main/kotlin/no/nav/tms/template` til noe som passer for den nye appen. 
 3. Tilpasse pakkenavnene, søk etter og erstatt `tms.template` med `tms.<ny mappestruktur>`.
 
-## Legge til sikkerhet
+## Legg til autentisering
 
 De fleste apper i vårt domene trenger enten å validere tokenx-tokens eller å integrere mot ID-Porten.
 
@@ -18,7 +18,7 @@ Benytt deg av dependencies fra `implementation(Tms.KtorTokenSupport.<modul>)` fo
 
 Referer til repo [navikt/tms-ktor-token-support](https://github.com/navikt/tms-ktor-token-support) for mer info om bruk.
 
-## Legge til influxdb
+## Legg til influxdb
 
 Noen apper trenger å rapportere metrikker til en influxdb instans. For å konfigurere vårt bibliotek for dette trenger vi
 en rekke variabler. Disse kan hentes fra en secret `influxdb-credentials`, som ligger i namespaces `min-side`.
@@ -53,7 +53,7 @@ val reporter = InfluxMetricsReporter(sensuConfig)
 
 Se bruk i [andre prosjekt](https://github.com/navikt/dittnav-brukernotifikasjonbestiller) for referanse.
 
-## Velge riktig ingress
+## Velg riktig ingress
 
 Templaten kommer konfigurert med to sett med ingresser. Det ene er ment for apper som skal nåes fra frontend, og
 det andre for apper som kun skal nåes fra andre tjenester eller naisdevice:
