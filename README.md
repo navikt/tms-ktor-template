@@ -51,6 +51,8 @@ val sensuconfig = InfluxConfig(
 val reporter = InfluxMetricsReporter(sensuConfig)
 ```
 
+Se bruk i [andre prosjekt](https://github.com/navikt/dittnav-brukernotifikasjonbestiller) for referanse.
+
 ## Velge riktig ingress
 
 Templaten kommer konfigurert med to sett med ingresser. Det ene er ment for apper som skal nåes fra frontend, og
@@ -59,7 +61,12 @@ det andre for apper som kun skal nåes fra andre tjenester eller naisdevice:
 Skal nåes fra frontend: `https://person.(dev.)nav.no/<appnavn>`
 Skal kun nåes fra andre tjenester: `https://<appnavn>.(dev.)intern.nav.no/<appnavn>` 
 
-Se bruk i [andre prosjekt](https://github.com/navikt/dittnav-brukernotifikasjonbestiller) for referanse.
+## Workflows
+
+Endre navn på mappen `.github/workflow_files` til `.github/workflows` for at github actions skal plukke dem opp.
+
+Det er god sannsynelighet for at dette prosjektet henger etter workflows fra andre prosjekt. Husk å legge til prosjektet
+i `pb-workflow-authority`.
 
 # Kom i gang
 1. Bygg tms-ktor-template ved å kjøre `gradle build`
