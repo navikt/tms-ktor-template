@@ -6,10 +6,8 @@ import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
-import io.ktor.util.*
 import no.nav.tms.template.health.healthApi
 
-@KtorExperimentalAPI
 fun Application.mainModule(appContext: ApplicationContext = ApplicationContext()) {
     val environment = Environment()
 
