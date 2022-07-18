@@ -38,8 +38,10 @@ dependencies {
     implementation(Ktor.htmlBuilder)
     implementation(Ktor.serverNetty)
     implementation(Ktor.serialization)
+    implementation(Ktor.metricsMicrometer)
     implementation(Logback.classic)
     implementation(Logstash.logbackEncoder)
+    implementation(Micrometer.registryPrometheus)
 
     testImplementation(Junit.api)
     testImplementation(Ktor.clientMock)
