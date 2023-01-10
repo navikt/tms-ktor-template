@@ -51,12 +51,3 @@ fun getDbUrl(host: String, port: String, name: String): String {
         "jdbc:postgresql://${host}:${port}/${name}"
     }
 }
-
-
-
-fun ContentNegotiationConfig.jsonConfig() = jackson {
-    registerModule(JavaTimeModule())
-    dateFormat = DateFormat.getDateTimeInstance()
-    configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-
-}

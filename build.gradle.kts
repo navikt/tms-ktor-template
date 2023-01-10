@@ -35,7 +35,7 @@ dependencies {
     implementation(Prometheus.hotspot)
     implementation(Prometheus.logback)
 
-    //ktor
+    //ktor server
     implementation(Ktor2.Server.core)
     implementation(Ktor2.Server.netty)
     implementation(Ktor2.Server.contentNegotiation)
@@ -44,6 +44,10 @@ dependencies {
     implementation(Ktor2.jackson)
     implementation(Ktor2.TmsTokenSupport.tokenXValidation)
     implementation(Ktor2.TmsTokenSupport.authenticationInstaller)
+    //ktor client
+    implementation(Ktor2.Client.core)
+    implementation(Ktor2.Client.apache)
+    implementation(Ktor2.Client.contentNegotiation)
 
     // authentication
     implementation(Ktor2.TmsTokenSupport.tokenXValidation)
