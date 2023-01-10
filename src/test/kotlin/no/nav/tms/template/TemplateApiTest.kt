@@ -1,7 +1,10 @@
 package no.nav.tms.template;
 
+import io.kotest.matchers.shouldBe
 import io.ktor.client.request.get
-import io.ktor.server.testing.ApplicationTestBuilder
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.HttpStatusCode
+import io.ktor.server.application.Application
 import io.ktor.server.testing.testApplication
 import no.nav.tms.token.support.authentication.installer.mock.installMockedAuthenticators
 import no.nav.tms.token.support.tokenx.validation.mock.SecurityLevel
@@ -13,30 +16,31 @@ class TemplateApiTest {
     @Test
     fun `eksempel på testing av autentisert rute`() = testApplication {
         application {
-            templateApi()
+            templateApi { mockedAuth() }
         }
-        client.get("/authenticated").apply {
-            TODO("Please write your test here")
+        client.get("/authenticated").assert {
+            status shouldBe HttpStatusCode.OK
+            bodyAsText() shouldBe "Hello 123456788910!"
         }
     }
 
     @Test
     fun `eksempel på testing av uautentisert rute`() = testApplication {
         application {
-            templateApi()
+            templateApi { mockedAuth() }
         }
         client.get("/internal/isAlive").apply {
-            TODO("Please write your test here")
+            status shouldBe HttpStatusCode.OK
         }
     }
 }
 
-/*
-fun ApplicationTestBuilder.mockedAuth() = installMockedAuthenticators {
+
+fun Application.mockedAuth(testIdent:String = "123456788910") = installMockedAuthenticators {
     installTokenXAuthMock {
         alwaysAuthenticated = true
         setAsDefault = true
-        staticUserPid = testFnr2
+        staticUserPid = testIdent
         staticSecurityLevel = SecurityLevel.LEVEL_4
     }
-}*/
+}
