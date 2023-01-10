@@ -23,37 +23,46 @@ repositories {
 }
 
 dependencies {
-    implementation(DittNAV.Common.logging)
     implementation(DittNAV.Common.utils)
-    implementation(Jackson.dataTypeJsr310)
-    implementation(Kotlinx.coroutines)
-    implementation(Kotlinx.htmlJvm)
-    implementation(Ktor.auth)
-    implementation(Ktor.authJwt)
-    implementation(Ktor.clientApache)
-    implementation(Ktor.clientJackson)
-    implementation(Ktor.clientJson)
-    implementation(Ktor.clientLogging)
-    implementation(Ktor.clientLoggingJvm)
-    implementation(Ktor.clientSerializationJvm)
-    implementation(Ktor.htmlBuilder)
-    implementation(Ktor.jackson)
-    implementation(Ktor.serverNetty)
-    implementation(Ktor.serialization)
-    implementation(Logback.classic)
-    implementation(Logstash.logbackEncoder)
+
+    //database
+    implementation(Flyway.core)
+    implementation(Hikari.cp)
+    implementation(Postgresql.postgresql)
+    implementation(kotliquery)
+
+    //logging and metrics
+    implementation(KotlinLogging.logging)
+    implementation(Prometheus.common)
+    implementation(Prometheus.hotspot)
+    implementation(Prometheus.logback)
+
+    //ktor
+    implementation(Ktor2.Server.core)
+    implementation(Ktor2.Server.netty)
+    implementation(Ktor2.Server.contentNegotiation)
+    implementation(Ktor2.Server.auth)
+    implementation(Ktor2.Server.authJwt)
+    implementation(Ktor2.jackson)
+    implementation(Ktor2.TmsTokenSupport.tokenXValidation)
+    implementation(Ktor2.TmsTokenSupport.authenticationInstaller)
+
+    // authentication
+    implementation(Ktor2.TmsTokenSupport.tokenXValidation)
+    implementation(Ktor2.TmsTokenSupport.authenticationInstaller)
+
+    //Rapids and rivers
+    implementation(RapidsAndRivers)
 
     testImplementation(Junit.api)
-    testImplementation(Ktor.clientMock)
-    testImplementation(Ktor.clientMockJvm)
-    testImplementation(Kluent.kluent)
-    testImplementation(Mockk.mockk)
-    testImplementation(Jjwt.api)
+    testImplementation(Junit.engine)
+    testImplementation(TestContainers.postgresql)
+    testImplementation(Kotest.runnerJunit5)
+    testImplementation(Kotest.assertionsCore)
+    testImplementation(Ktor2.Test.serverTestHost)
+    testImplementation(Ktor2.TmsTokenSupport.authenticationInstallerMock)
+    testImplementation(Ktor2.TmsTokenSupport.tokenXValidationMock)
 
-    testRuntimeOnly(Bouncycastle.bcprovJdk15on)
-    testRuntimeOnly(Jjwt.impl)
-    testRuntimeOnly(Jjwt.jackson)
-    testRuntimeOnly(Junit.engine)
 }
 
 application {

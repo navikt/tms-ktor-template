@@ -1,13 +1,16 @@
 package no.nav.tms.template.health
 
-import io.ktor.application.call
+// ! slett hvis appen din bruker rapids & rivers
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
-import io.ktor.response.respondText
-import io.ktor.routing.Routing
-import io.ktor.routing.get
+import io.ktor.server.application.call
+import io.ktor.server.response.respond
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.Routing
+import io.ktor.server.routing.get
 
-fun Routing.healthApi(healthService: HealthService) {
+
+fun Routing.healthApi() {
 
     val pingJsonResponse = """{"ping": "pong"}"""
 
@@ -20,21 +23,6 @@ fun Routing.healthApi(healthService: HealthService) {
     }
 
     get("/internal/isReady") {
-        if (isReady(healthService)) {
-            call.respondText(text = "READY", contentType = ContentType.Text.Plain)
-        } else {
-            call.respondText(text = "NOTREADY", contentType = ContentType.Text.Plain, status = HttpStatusCode.ServiceUnavailable)
-        }
+        call.respond(HttpStatusCode.OK)
     }
-
-    get("/internal/selftest") {
-        call.buildSelftestPage(healthService)
-    }
-}
-
-private suspend fun isReady(healthService: HealthService): Boolean {
-    val healthChecks = healthService.getHealthChecks()
-    return healthChecks
-            .filter { healthStatus -> healthStatus.includeInReadiness }
-            .all { healthStatus -> Status.OK == healthStatus.status }
 }

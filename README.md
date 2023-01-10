@@ -37,45 +37,10 @@ Det er god sannsynlighet for at dette prosjektet henger etter workflows fra andr
 i `pb-workflow-authority`.
 
 
-## Influxdb
-
-Noen apper trenger å rapportere metrikker til en influxdb instans. For å konfigurere vårt bibliotek for dette trenger vi
-en rekke variabler. Disse kan hentes fra en secret `influxdb-credentials`, som ligger i namespaces `min-side`.
-
-Eksempel:
-
-```
-spec:
-   envFrom:
-    - secret: influxdb-credentials
-```
-
-Det er lagt til utkommentert kode for å hente variablene i Environment.kt. Fjern koden eller kommenteringen etter behov.
-
-Variablene brukes kan som følgende for å opprette en client:
-
-```
-val sensuconfig = InfluxConfig(
-     applicationName = environment.applicationName,
-     hostName = environment.influxdbHost,
-     hostPort = environment.influxdbPort,
-     databaseName = environment.influxdbName,
-     retentionPolicyName = environment.influxdbRetentionPolicy,
-     clusterName = environment.clusterName,
-     namespace = environment.namespace,
-     userName = environment.influxdbUser,
-     password = environment.influxdbPassword
-)
-
-val reporter = InfluxMetricsReporter(sensuConfig)
-```
-
-Se bruk i [andre prosjekt](https://github.com/navikt/dittnav-brukernotifikasjonbestiller) for referanse.
-
 # Kom i gang
 1. Bygg tms-ktor-template ved å kjøre `gradle build`
-1. Start appen lokalt ved å kjøre `gradle runServer`
-1. Appen nås på `http://localhost:8101/tms-ktor-template`
+2. Start appen lokalt ved å kjøre `gradle runServer`
+3. Appen nås på `http://localhost:8101/tms-ktor-template`
    * F.eks. via `curl http://localhost:8101/tms-ktor-template/internal/isAlive`
 
 # Henvendelser
