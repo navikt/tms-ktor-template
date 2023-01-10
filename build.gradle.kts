@@ -6,8 +6,6 @@ plugins {
     kotlin("jvm").version(Kotlin.version)
     kotlin("plugin.allopen").version(Kotlin.version)
 
-    id(Shadow.pluginId) version (Shadow.version)
-    // Apply the application plugin to add support for building a CLI application.
     application
 }
 
@@ -66,7 +64,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "io.ktor.server.netty.EngineMain"
+    mainClass.set("no.nav.tms.template.ApplicationKt")
 }
 
 tasks {
@@ -78,16 +76,5 @@ tasks {
         }
     }
 
-    register("runServer", JavaExec::class) {
-
-        environment("CORS_ALLOWED_ORIGINS", "localhost:9002")
-
-        environment("NAIS_CLUSTER_NAME", "dev-sbs")
-        environment("NAIS_NAMESPACE", "personbruker")
-
-        main = application.mainClassName
-        classpath = sourceSets["main"].runtimeClasspath
-    }
 }
 
-apply(plugin = Shadow.pluginId)

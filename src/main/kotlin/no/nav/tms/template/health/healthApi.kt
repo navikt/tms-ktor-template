@@ -1,6 +1,6 @@
 package no.nav.tms.template.health
 
-// ! slett hvis appen din bruker rapids & rivers
+// ! slett hvis tjenesten bruker rapids & rivers
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.call
