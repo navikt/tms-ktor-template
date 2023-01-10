@@ -6,6 +6,7 @@ import no.nav.helse.rapids_rivers.RapidApplication
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.tms.template.config.Environment
 import no.nav.tms.template.database.Flyway
+import no.nav.tms.template.rapids.ExampleSink
 
 fun main(){
     startRapid(Environment())
@@ -21,6 +22,8 @@ private fun startRapid(
         templateApi()
     }.build().apply {
         //rapidsoppsett
+        ExampleSink(this)
+
         register(object : RapidsConnection.StatusListener {
             override fun onStartup(rapidsConnection: RapidsConnection) {
                 Flyway.runFlywayMigrations(environment)
