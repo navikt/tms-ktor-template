@@ -23,9 +23,8 @@ repositories {
 }
 
 dependencies {
-    implementation(DittNAV.Common.logging)
-    implementation(DittNAV.Common.utils)
-    implementation(Jackson.dataTypeJsr310)
+    implementation(DittNAVCommonLib.utils)
+    implementation(JacksonDatatype.datatypeJsr310)
     implementation(Kotlinx.coroutines)
     implementation(Kotlinx.htmlJvm)
     implementation(Ktor.auth)
@@ -67,17 +66,6 @@ tasks {
             exceptionFormat = TestExceptionFormat.FULL
             events("passed", "skipped", "failed")
         }
-    }
-
-    register("runServer", JavaExec::class) {
-
-        environment("CORS_ALLOWED_ORIGINS", "localhost:9002")
-
-        environment("NAIS_CLUSTER_NAME", "dev-sbs")
-        environment("NAIS_NAMESPACE", "personbruker")
-
-        main = application.mainClassName
-        classpath = sourceSets["main"].runtimeClasspath
     }
 }
 
